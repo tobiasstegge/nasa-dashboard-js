@@ -24,19 +24,7 @@ const App = (state) => {
     return `
         <header></header>
         <main>
-            ${Greeting(store.user.name)}
-            <section>
-                <h3>Put things on the page!</h3>
-                <p>Here is an example section.</p>
-                <p>
-                    One of the most popular websites at NASA is the Astronomy Picture of the Day. In fact, this website is one of
-                    the most popular websites across all federal agencies. It has the popular appeal of a Justin Bieber video.
-                    This endpoint structures the APOD imagery and associated metadata so that it can be repurposed for other
-                    applications. In addition, if the concept_tags parameter is set to True, then keywords derived from the image
-                    explanation are returned. These keywords could be used as auto-generated hashtags for twitter or instagram feeds;
-                    but generally help with discoverability of relevant imagery.
-                </p>
-                ${ImageOfTheDay(apod)}
+            ${Greeting()}
             </section>
         </main>
         <footer></footer>
@@ -51,16 +39,12 @@ window.addEventListener('load', () => {
 // ------------------------------------------------------  COMPONENTS
 
 // Pure function that renders conditional information -- THIS IS JUST AN EXAMPLE, you can delete it.
-const Greeting = (name) => {
-    if (name) {
-        return `
-            <h1>Welcome, ${name}!</h1>
+const Greeting = () => {
+    return ` 
+        <h1>Welcome to the Mars Rover Explorer!</h1>
+        <p>This website shows content of the NASA API to you. Everytime you reload, new random facts about the NASA rovers will be displayed!</p>
+        <h2>Pick one of the 4 rovers from Mars</h2>
         `
-    }
-
-    return `
-        <h1>Hello!</h1>
-    `
 }
 
 // Example of a pure function that renders infomation requested from the backend
@@ -94,10 +78,10 @@ const ImageOfTheDay = (apod) => {
 // ------------------------------------------------------  API CALLS
 
 // Example API call
-const getImageOfTheDay = (state) => {
+const getCuriosityData = (state) => {
     let { apod } = state
 
-    fetch(`http://localhost:3000/apod`)
+    fetch(`http://localhost:3000/curiosity`)
         .then(res => res.json())
         .then(apod => updateStore(store, { apod }))
 
